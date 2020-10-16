@@ -9,14 +9,15 @@ from flask_mail import Mail, Message
 
 
 app = Flask("mpg_prediction")
+print(os.environ.get('MAIL_PASSWORD'))
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=465,
     MAIL_USE_SSL=True,
     MAIL_USERNAME = 'assia.chafii93@gmail.com',
     MAIL_PASSWORD = 'AM_bh-MALAK159'
-    #MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
-    )
+    #MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+)
 
 mail = Mail(app)
 @app.route("/", methods =['Get'])

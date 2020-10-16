@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<title>mpg prediction</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="https://github.com/achafi" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-github w3-margin-right"></i>Gihub repository</b></a>
+  <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img class="w3-image" src="/static/car.jpg" alt="montagne" width="1500" height="700">
+  <div class="w3-display-middle" style="width:65%">
+    <div class="w3-bar w3-black">
+    <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Car');"><i class="fa fa-car w3-margin-right"></i>Milles Per Gallon (MPG) prediction</button>
+    </div>
+
+    <!-- Tabs -->
+    <div id="Car" class="w3-container w3-white w3-padding-16 myLink">
+      
+      <form action="\predict" method="post">
+        
+        <!--Cylinders-->
+        <label>Cylinders</label>
+            <input name="Cylinders" id="Cylinders" type="number" placeholder="(ex:4,6,...)" required="required">
+        <!--Displacement-->
+        <label>Displacement</label>
+            <input name="Displacement" id="Displacement" type="number" placeholder="(ex:155,160,...)" required="required">
+        <!--Horsepower-->
+       <label>Horsepower</label>
+            <input name="Horsepower" id="Horsepower" type="number" placeholder="(ex:93,130,...)" required="required">
+        <br>
+        <!--Weight-->
+        <label>Weight</label>
+            <input name="Weight" id="Weight" type="number" placeholder="(ex: 2500,3150,..)" required="required">
+        <!--Acceleration-->
+        <label>Acceleration</label>
+            <input name="Acceleration" id="Acceleration" type="number" placeholder="(15,14...)" required="required">
+        <!--ModelYear-->
+        <label>Model Year</label>
+            <input name="ModelYear" id="ModelYear" type="number" placeholder="(70,81..)" required="required">
+            <br>
+        <!--Origin-->
+        <label>Origin</label>
+            <select name="Origin" id="Origin" required="required">
+              <option value="Germany">Germany</option>
+              <option value="USA">USA</option>
+              <option value="India">India</option>
+          </select>
+        <p><input type="submit" value="Submit and predict" class="w3-button w3-dark-grey"></p>
+        <h5>{{ prediction_text }}</h5>
+      </form>
+      
+    </div>
+  </div>
+</header>
+
+
+  <!-- Contact -->
+  <div class="w3-container">
+    <h2>Contact</h2>
+    <p>Your feedback is important to me. Please get in touch if you have any questions, suggestions, ideas, and comments.</p>
+    <i class="fa fa-map-marker" style="width:30px"></i> Morocco<br>
+    <i class="fa fa-phone" style="width:30px"></i> Phone: +212 679 232 418<br>
+    <i class="fa fa-envelope" style="width:30px"> </i> Email: assia.chafii93@gmail.com<br>
+    <form action="\send_message" method="post">
+      <p><input class="w3-input w3-padding-16 w3-border" name="Name" id="Name" type="text" placeholder="Name" required="required"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" name="Email" id="Email" type="text" placeholder="Email" required="required"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" name="Message" id="Message" type="text" placeholder="Message" required="required"></p>
+      <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+      
+    </form>
+    <h5>{{ message_sent }}</h5>
+  </div>
+  
+
+    <!-- Newsletter -->
+    <div class="w3-container">
+      <div class="w3-panel w3-padding-16 w3-black w3-opacity w3-card w3-hover-opacity-off">
+        <h2>Later on</h2>
+        <p>Join our newsletter.</p>
+        <label>E-mail</label>
+        <input class="w3-input w3-border" type="text" placeholder="Your Email address">
+        <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
+      </div>
+    </div>
+    
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <h5>Find Me On</h5>
+  <div class="w3-xlarge w3-padding-16">
+    <a href="https://www.linkedin.com/in/assia-chafi-17451ab6/"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+    <a href = "https://web.facebook.com/assia.chafai.9"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href = "https://www.instagram.com/assiachafi/?hl=en"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+  </div>
+  <p>Powered by <a href="https://achafi.github.io/myportfolio/" target="_blank" class="w3-hover-text-green">Assia CHAFI</a></p>
+</footer>
+
+<!--Javascript-->
+<script>
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+// Click on the first tablink on load
+document.getElementsByClassName("tablink")[0].click();
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+crossorigin="anonymous"></script>
+</body>
+</html>
